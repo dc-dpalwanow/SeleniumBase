@@ -1152,7 +1152,7 @@ def uc_gui_click_x_y(driver, x, y, timeframe=0.25):
         if IS_WINDOWS:
             x = x * width_ratio
             y = y * width_ratio
-            (driver, x, y, timeframe=timeframe, uc_lock=False)
+            _uc_gui_click_x_y(driver, x, y, timeframe=timeframe, uc_lock=False)
             return
         with suppress(Exception):
             page_actions.switch_to_window(
