@@ -1471,6 +1471,7 @@ def _uc_gui_click_captcha(
                 else:
                     driver.disconnect()
             with suppress(Exception):
+                time.sleep(60)
                 _uc_gui_click_x_y(driver, x, y, timeframe=0.32)
                 if __is_cdp_swap_needed(driver):
                     time.sleep(float(constants.UC.RECONNECT_TIME) / 2.0)
@@ -1520,12 +1521,14 @@ def _uc_gui_click_captcha(
             if blind:
                 driver.uc_open_with_disconnect(driver.get_current_url(), 3.8)
                 if __is_cdp_swap_needed(driver) and _on_a_captcha_page(driver):
+                    time.sleep(60)
                     _uc_gui_click_x_y(driver, x, y, timeframe=0.32)
                 else:
                     time.sleep(0.1)
             else:
                 driver.uc_open_with_reconnect(driver.get_current_url(), 3.8)
                 if _on_a_captcha_page(driver):
+                    time.sleep(60)
                     driver.disconnect()
                     _uc_gui_click_x_y(driver, x, y, timeframe=0.32)
         if not cdp_mode_on_at_start:
